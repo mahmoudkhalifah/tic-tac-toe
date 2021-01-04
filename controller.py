@@ -67,11 +67,7 @@ class Controller:
                 return
         self.numOfClicks += 1
 
-    def popup(self,text):
-        pu = Toplevel()
-        l = Label(pu,text=text).pack()
-        pu.title("result")
-        pu.geometry('200x100')
+ 
 
     def reset(self):
         self.xo = XO()
