@@ -43,29 +43,7 @@ class Controller:
                 self.buttonList[i].grid(row=3, column=i - 6)
         self.root.mainloop()
 
-    def click(self, i):
-        self.buttonList[i]["command"] = 0
-        self.buttonList[i]['relief'] = 'sunken'
-        if self.numOfClicks % 2 == 0:
-            self.symbol = "X"
-            color = "red"
-        else:
-            self.symbol = "O"
-            color = "blue"
-        self.buttonList[i]["fg"]=color
-        self.xo.set(i, self.symbol)
-        self.symbolTexts[i].set(self.symbol)
-
-        if self.xo.isWinner(self.symbol):
-            self.popup("player "+self.symbol+" WINS !")
-            self.reset()
-            return
-        if self.numOfClicks == 8:
-            if self.xo.isTie():
-                self.popup("It's a TIE!")
-                self.reset()
-                return
-        self.numOfClicks += 1
+   
 
     def popup(self,text):
         pu = Toplevel()
