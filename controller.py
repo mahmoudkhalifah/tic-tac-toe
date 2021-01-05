@@ -43,35 +43,29 @@ class Controller:
                 self.buttonList[i].grid(row=3, column=i - 6)
         self.root.mainloop()
 
-    def click(self, i):
-        self.buttonList[i]["command"] = 0
-        self.buttonList[i]['relief'] = 'sunken'
-        if self.numOfClicks % 2 == 0:
-            self.symbol = "X"
-            color = "red"
-        else:
-            self.symbol = "O"
-            color = "blue"
-        self.buttonList[i]["fg"]=color
-        self.xo.set(i, self.symbol)
-        self.symbolTexts[i].set(self.symbol)
+        def click(self, i):
+            self.buttonList[i]["command"] = 0
+            self.buttonList[i]['relief'] = 'sunken'
+            if self.numOfClicks % 2 == 0:
+                self.symbol = "X"
+                color = "red"
+            else:
+                self.symbol = "O"
+                color = "blue"
+            self.buttonList[i]["fg"] = color
+            self.xo.set(i, self.symbol)
+            self.symbolTexts[i].set(self.symbol)
 
-        if self.xo.isWinner(self.symbol):
-            self.popup("player "+self.symbol+" WINS !")
-            self.reset()
-            return
-        if self.numOfClicks == 8:
-            if self.xo.isTie():
-                self.popup("It's a TIE!")
+            if self.xo.isWinner(self.symbol):
+                self.popup("player " + self.symbol + " WINS !")
                 self.reset()
                 return
-        self.numOfClicks += 1
-
-    def popup(self,text):
-        pu = Toplevel()
-        l = Label(pu,text=text).pack()
-        pu.title("result")
-        pu.geometry('200x100')
+            if self.numOfClicks == 8:
+                if self.xo.isTie():
+                    self.popup("It's a TIE!")
+                    self.reset()
+                    return
+            self.numOfClicks += 1
 
     def reset(self):
         self.xo = XO()
@@ -88,3 +82,4 @@ class Controller:
         self.buttonList[6]['command'] = lambda: self.click(6)
         self.buttonList[7]['command'] = lambda: self.click(7)
         self.buttonList[8]['command'] = lambda: self.click(8)
+
